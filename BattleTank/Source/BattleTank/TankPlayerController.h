@@ -19,6 +19,6 @@ public:
 	ATank* GetControllerTank() const;
 	
 	
-	
+	virtual void BeginPlay() override;
 	
 };
