@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "Tank.H"
 #include "CoreMinimal.h"
+#include "Tank.H"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" // Must be last include
 
@@ -17,12 +17,14 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 
 public:
 
-	ATank* GetControlledTank() const;
-	
-	
 	virtual void BeginPlay() override;
-	
+
 	virtual void Tick(float DeltaTime) override;
+
+
+private:
+
+	ATank* GetControlledTank() const;
 
 	// Start the Tank moving the barrel so that a shot would hit where
 	// the crosshair intersects the world
@@ -30,4 +32,11 @@ public:
 
 	// Return an Out Parameter, true if hit landscape
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5f;
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairYLocation = 0.33333f;
+
 };
