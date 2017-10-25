@@ -7,7 +7,7 @@
 #include "TankAimingComponent.generated.h"
 
 // Forward Decleration
-class UTankBarrel; 
+class UTankBarrel;
 
 // Hold barrels properties and elevate method
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
