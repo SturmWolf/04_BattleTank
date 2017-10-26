@@ -6,7 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" // Must be last include
 
-class Tank;
 class ATank;
 
 UCLASS()
