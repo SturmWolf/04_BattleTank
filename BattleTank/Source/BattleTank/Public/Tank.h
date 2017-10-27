@@ -49,4 +49,8 @@ private:	// Sets default values for this pawn's properties
 		TSubclassOf<AProjectile> ProjectileBlueprint; 
 	// Local barrel reference for spawning 
 	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSeconds = 3;
+
+	double LastFireTime = 0;
 };
