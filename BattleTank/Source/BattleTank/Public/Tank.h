@@ -20,6 +20,9 @@ public:
 	UFUNCTION(BluePrintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* BarrelToSet);
 
+	UFUNCTION(BluePrintCallable, Category = Setup)
+		void SetTurretReference(UTankTurret1* TurretToSet);
+
 protected:
 
 	UTankAimingComponent* TankAimingComponent = nullptr;

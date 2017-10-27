@@ -1,6 +1,7 @@
 // Ben Wolfenbarger Copyright 2017
 
 #include "TankAimingComponent.h"
+#include "TankTurret1.h"
 #include "BattleTank.h"
 #include "TankBarrel.h"
 #include "Kismet/GameplayStatics.h"
@@ -18,7 +19,14 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet) { return;  }
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTankTurret1* TurretToSet)
+{
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
