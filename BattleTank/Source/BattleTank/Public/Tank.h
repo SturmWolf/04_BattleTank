@@ -41,6 +41,6 @@ private:	// Sets default values for this pawn's properties
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 1000000; // TODO Find sensible defualt
+		float LaunchSpeed = 10000; // TODO Find sensible defualt
 	
 };
