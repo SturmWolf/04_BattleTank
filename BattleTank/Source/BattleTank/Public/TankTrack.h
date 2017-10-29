@@ -20,6 +20,6 @@ public:
 
 	// Max force per track in newwtons
 	UPROPERTY(EditDefaultsOnly)
-		float TrackMaxDrivingForce = 35000000; // Asusume 40 ton tank, and ig acceleration
+		float TrackMaxDrivingForce = 28000000; // Asusume 40 ton tank, and ig acceleration
 	
 };
