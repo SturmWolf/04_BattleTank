@@ -14,9 +14,8 @@ Locked,
 Reloading 
 };
 
-// Forward Declaration
 class UTankBarrel;
-
+class AProjectile;
 class UTankTurret1;
 
 // Hold barrels properties and elevate method
@@ -30,6 +29,9 @@ public:
 		void Initialise(UTankBarrel* BarrelToSet, UTankTurret1* TurretToSet);
 
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BluePrintCallable, Category = "Firing")
+		void Fire();
 		
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -39,12 +41,19 @@ private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-		UPROPERTY(EditAnywhere, Category = "Firing")
-		float LaunchSpeed = 10000;
+	void MoveBarrelTowards(FVector AimDirection); // Method
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret1* Turret = nullptr;
 
-	void MoveBarrelTowards(FVector AimDirection);
-	
+	 UPROPERTY(EditAnywhere, Category = "Firing")
+		 float LaunchSpeed = 10000;
+
+	UPROPERTY(EditAnywhere, Category = "Setup")
+		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		float ReloadTimeInSeconds = 3;
+
+	double LastFireTime = 0;
 };
