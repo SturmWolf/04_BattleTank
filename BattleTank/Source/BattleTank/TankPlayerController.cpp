@@ -1,40 +1,42 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Ben Wolfenbarger
+
 
 #include "TankPlayerController.h"
 #include "BattleTank.h" 
 #include "Tank.H"
+#include "TankAimingComponent.h"
 
-
-	// AimTowardsCrosshair();
-void ATankPlayerController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	AimTowardsCrosshair();
-}
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (AimingComponent)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController Not Possessing Tank"));
+		FoundAimingComponent(AimingComponent);
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PlayerController Posessing %s"), *(ControlledTank->GetName()));
+		UE_LOG(LogTemp, Warning, TEXT("Player Controller can't find aiming component at begin play"))
 	}
 }
 
-ATank* ATankPlayerController::GetControlledTank() const 
+ATank* ATankPlayerController::GetControlledTank() const
 {
 
 	return Cast<ATank>(GetPawn());
 
 }
 
-void ATankPlayerController::AimTowardsCrosshair()
+	// AimTowardsCrosshair();
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimTowardsCrossHair();
+}
+
+
+void ATankPlayerController::AimTowardsCrossHair()
 {
 	if (!GetControlledTank()) { return; }
 
