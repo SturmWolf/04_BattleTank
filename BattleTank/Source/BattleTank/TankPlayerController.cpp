@@ -9,12 +9,10 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	if (!GetPawn()) { return; } // e.g. if not possessing
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (!AimingComponent) { return; }
-	{
-		FoundAimingComponent(AimingComponent);
-	}
+	if (!ensure(AimingComponent)) { return; }
+	FoundAimingComponent(AimingComponent);
+	
 }
 
 	// AimTowardsCrosshair();
@@ -27,14 +25,10 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardsCrossHair()
 {
-
 	if (!GetPawn()) { return; } // e.g. if not possessing
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (!AimingComponent) { return; }
-	{
-		FoundAimingComponent(AimingComponent);
-	}
-
+	if (!ensure(AimingComponent)) { return; }
+	
 	FVector HitLocation; // OUT Parameter
 	if (GetSightRayHitLocation(HitLocation)) // Has "Side Effect", is going to line trace
 	{
