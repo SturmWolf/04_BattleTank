@@ -16,10 +16,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
-
-	// TODO Remove combined control speed
-
-
 }
 
 void UTankMovementComponent::IntendTurnLeft(float Throw)
@@ -27,24 +23,15 @@ void UTankMovementComponent::IntendTurnLeft(float Throw)
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(-Throw);
 	RightTrack->SetThrottle(Throw);
-
-	// TODO Remove combined control speed
-
-
 }
-
-
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
-
-	// TODO Remove combined control speed
-
-
 }
+
 // log template UE_LOG(LogTemp, Warning, TEXT("intend to turn right: %f"), Throw);
 
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)

@@ -7,9 +7,7 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankAimingComponent;
 class AProjectile;
-class UTankMovementComponent;
 
 
 UCLASS()
@@ -18,18 +16,10 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
-	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BluePrintCallable, Category = "Firing")
 		void Fire();
 
-
-protected:
-	UPROPERTY(BluePrintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
-
-	UPROPERTY(BluePrintReadOnly)
-	UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:	// Sets default values for this pawn's properties
 	ATank();
@@ -37,8 +27,9 @@ private:	// Sets default values for this pawn's properties
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// TODO Remove once firing is moved to AimingComponent
 	UPROPERTY(EditAnywhere, Category = "Firing")
-		float LaunchSpeed = 10000; // TODO Find sensible defualt
+		float LaunchSpeed = 10000; 
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint; 

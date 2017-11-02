@@ -29,7 +29,7 @@ public:
 	UFUNCTION(BluePrintCallable, Category = "Setup")
 		void Initialise(UTankBarrel* BarrelToSet, UTankTurret1* TurretToSet);
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 		
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
@@ -38,6 +38,9 @@ protected:
 private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
+
+		UPROPERTY(EditAnywhere, Category = "Firing")
+		float LaunchSpeed = 10000;
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret1* Turret = nullptr;
