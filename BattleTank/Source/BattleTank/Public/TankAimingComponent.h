@@ -53,7 +53,7 @@ private:
 	UTankTurret1* Turret = nullptr;
 
 	 UPROPERTY(EditAnywhere, Category = "Firing")
-		 float LaunchSpeed = 10000;
+		 float LaunchSpeed = 20000;
 
 	 UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		 float ReloadTimeInSeconds = 3;

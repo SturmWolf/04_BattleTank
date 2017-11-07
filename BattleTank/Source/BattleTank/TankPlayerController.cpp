@@ -30,7 +30,8 @@ void ATankPlayerController::AimTowardsCrossHair()
 	if (!ensure(AimingComponent)) { return; }
 	
 	FVector HitLocation; // OUT Parameter
-	if (GetSightRayHitLocation(HitLocation)) // Has "Side Effect", is going to line trace
+	bool bGotHitLocation = GetSightRayHitLocation(HitLocation);
+	if (bGotHitLocation) // Has "Side Effect", is going to line trace
 	{
 		AimingComponent->AimAt(HitLocation);
 	
@@ -50,10 +51,10 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
 		// Line Trace along that LookDirection, and see what we hit up to a max range
-		GetLookVectorHitLocation(LookDirection, HitLocation);
+		return GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
 	// Line Trace along that LookDirection, and see what we hit up to a max range
-	return true;
+	return false;
 }
 
 bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const
