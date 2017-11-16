@@ -2,6 +2,7 @@
 
 #include "Projectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "ParticleDefinitions.h"
 #include "TankAimingComponent.h"
 #include "BattleTank.h"
@@ -49,6 +50,15 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
+
+	UGameplayStatics::ApplyRadialDamage(
+		this,
+		ProjectileDamage,
+		GetActorLocation(),
+		ExplosionForce->Radius, // for consistancy
+		UDamageType::StaticClass(),
+		TArray<AActor*>() // damage all actors
+		 );
 
 	FTimerHandle Timer;
 	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AProjectile::OnTimerExpire, DestroyDelay, false);
