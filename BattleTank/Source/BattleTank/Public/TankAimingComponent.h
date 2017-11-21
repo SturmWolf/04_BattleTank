@@ -65,7 +65,7 @@ private:
 		 float ReloadTimeInSeconds = 3;
 
 	 UPROPERTY(EditAnywhere, Category = "Firing")
-		 int32 RoundsLeft = 3;
+		 int32 RoundsLeft = 20;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
