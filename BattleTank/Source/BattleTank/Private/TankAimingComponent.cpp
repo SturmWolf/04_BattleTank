@@ -52,7 +52,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickTy
 	{
 		FiringStatus = EFiringStatus::Locked;
 	}
-	 // TODO Handle aiming and locked states
+	
 }
 
 EFiringStatus UTankAimingComponent::GetFiringStatus() const
